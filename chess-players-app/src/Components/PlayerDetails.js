@@ -3,22 +3,33 @@ import { useParams } from 'react-router-dom';
 
 const PlayerDetails = () => {
   const { id } = useParams();
-  const [playerDetails, setPlayerDetails] = useState({});
+  const [playerDetails, setPlayerDetails] = useState(null);
 
   useEffect(() => {
-    // Fetch player details based on id from the API
-    fetch(`http://localhost:8000/players/${id}`)
-      .then((response) => response.json())
-      .then((data) => setPlayerDetails(data))
-      .catch((error) => console.error('Error fetching player details:', error));
+    // Fetch player details from the backend when the component mounts
+    const fetchPlayerDetails = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/player/${id}/details`);
+        const data = await response.json();
+        setPlayerDetails(data);
+      } catch (error) {
+        console.error('Error fetching player details:', error);
+      }
+    };
+
+    fetchPlayerDetails();
   }, [id]);
+
+  if (!playerDetails) {
+    return <p>Loading player details...</p>;
+  }
 
   return (
     <div>
       <h2>Player Details</h2>
-      <p>Display details for player with ID: {id}</p>
-      {/* Render player details */}
-      <pre>{JSON.stringify(playerDetails, null, 2)}</pre>
+      <p>Username: {playerDetails.username}</p>
+      <p>Rating: {playerDetails.rating}</p>
+      {/* Add more details as needed */}
     </div>
   );
 };

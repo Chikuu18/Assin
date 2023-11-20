@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AuthenticationProvider } from './Components/Auth';
+import { AuthenticationProvider } from './Context/AuthenticationContext';
 import ErrorBoundary from './Components/ErrorBoundry';
 import Dashboard from './Components/Dashboard';
 import PlayerDetails from './Components/PlayerDetails';

@@ -1,24 +1,24 @@
+// /src/components/PlayerList.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const PlayerList = () => {
-  const [topPlayers, setTopPlayers] = useState([]);
+  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    // Fetch top 50 chess players from the API
-    fetch('http://localhost:8000/top-players')
+    // Fetch the list of top players from your FastAPI backend
+    fetch('http://localhost:8000/top-players') // Update the URL based on your FastAPI setup
       .then((response) => response.json())
-      .then((data) => setTopPlayers(data))
-      .catch((error) => console.error('Error fetching top players:', error));
+      .then((data) => setPlayers(data))
+      .catch((error) => console.error('Error fetching players:', error));
   }, []);
 
   return (
     <div>
-      <h2>Top 50 Chess Players</h2>
+      <h2>Top Chess Players</h2>
       <ul>
-        {topPlayers.map((player) => (
-          <li key={player.id}>
-            <Link to={`/players/${player.id}`}>{player.name}</Link>
+        {players.map((player) => (
+          <li key={player.username}>
+            <strong>{player.username}</strong> - Rating: {player.rating}
           </li>
         ))}
       </ul>

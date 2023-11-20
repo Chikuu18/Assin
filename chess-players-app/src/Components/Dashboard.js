@@ -1,9 +1,9 @@
-// src/components/Dashboard.js
 import React from 'react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import PlayerList from './PlayerList';
 import PlayerDetails from './PlayerDetails';
 import Login from './Login';
+
 
 const Dashboard = () => {
   // Simple authentication logic (replace with your actual authentication mechanism)

@@ -1,6 +1,5 @@
-// src/components/Login.js
 import React from 'react';
-import { useAuthentication } from '../Components/Auth';
+import { useAuthentication } from '../Context/AuthenticationContext';
 
 const Login = () => {
   const { login } = useAuthentication();
